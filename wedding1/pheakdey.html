@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>សំបុត្រអញ្ជើញមង្គលការ</title>
+
+<!-- Google Khmer Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@300;400;600&family=Noto+Serif+Khmer:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+body {
+	background-color: #CBFABC;
+    margin: 0;
+    padding: 0;
+    font-family: 'Kantumruy Pro', sans-serif;
+    background: linear-gradient(to bottom, #fff0f5, #ffffff);
+    
+}
+
+/* Main Card */
+.invitation {
+    max-width: 850px;
+    margin: 40px auto;
+    background: #fff;
+    border-radius: 20px;
+    padding: 40px 25px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    text-align: center;
+	background-color: #BCFAF5;
+}
+
+/* Text Styles */
+.title {
+    font-family: 'Noto Serif Khmer', serif;
+    font-size: 36px;
+    color: #0B5299;
+}
+
+.subtitle {
+    font-size: 18px;
+    margin: 20px 0;
+}
+
+.names {
+    font-family: 'Noto Serif Khmer', serif;
+    font-size: 32px;
+	color: #b76e79;
+    margin: 20px 0;
+}
+
+.heart {
+    color: #d6336c;
+    font-size: 28px;
+    margin: 0 10px;
+}
+
+.details {
+    font-size: 18px;
+    line-height: 1.9;
+    margin-top: 25px;
+}
+
+/* Date Box */
+.date-box {
+    margin: 30px auto;
+    padding: 20px 25px;
+    border: 2px solid #f2c1cc;
+    border-radius: 15px;
+    width: fit-content;
+    font-size: 17px;
+}
+
+/* Photos */
+.photo-section {
+    margin: 35px 0;
+}
+
+.couple-photo {
+    width: 220px;
+    height: 220px;
+    margin: 0 auto 25px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 6px solid #f2c1cc;
+}
+
+.couple-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Gallery */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 15px;
+}
+
+.gallery img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 14px;
+    border: 3px solid #fde2e7;
+}
+
+/* Footer */
+.footer {
+    margin-top: 40px;
+    font-size: 16px;
+    color: #555;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+    .title { font-size: 30px; }
+    .names { font-size: 26px; }
+    .details { font-size: 16px; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="invitation">
+
+    <div class="title">សំបុត្រអញ្ជើញមង្គលការ</div>
+
+    <div class="subtitle">
+        សូមគោរពអញ្ជើញ<br>
+        ឯកឧត្តម លោកជំទាវ លោកស្រី អ្នកនាង កញ្ញា
+    </div>
+
+    <div class="names">
+        កូនកំលោះ<strong>ផន​ ភក្ដី</strong>
+        <span class="heart">❤</span>
+កូនក្រមុំ <strong>ស្រី វឿន</strong>
+    </div>
+
+    <!-- Profile Photo -->
+    <div class="photo-section">
+        <div class="couple-photo">
+            <img src="image/couple.jpg" alt="Couple Photo">
+        </div>
+	<div class="details">
+        មានកិត្តិយសសូមអញ្ជើញភ្ញៀវកិត្តិយស<br>
+        អញ្ជើញចូលរួមជាអធិបតី និងជាភ្ញៀវកិត្តិយស<br>
+        ក្នុងពិធីមង្គលអាពាហ៍ពិពាហ៍
+    </div>
+	<div class="date-box">
+        📅 អាទិត្យ ទី២២ ខែកុម្ភ: ឆ្នាំ២០២៦<br>
+        ⏰ វេលាម៉ោង ៤:០០ ល្ងាច<br>
+        📍 ភូមិដើមត្រសេក ឃុំជ័យជោគ ស្រុកកោះអណ្ដែត ខេត្តតាកែវ
+    </div>
+        <!-- Gallery Photos -->
+        <div class="gallery">
+            <img src="image/pic1.jpg" alt="Wedding Photo 1">
+            <img src="image/pic2.jpg" alt="Wedding Photo 2">
+            <img src="image/pic3.jpg" alt="Wedding Photo 3">
+            <img src="image/pic4.jpg" alt="Wedding Photo 4">
+        </div>
+    </div>
+
+    
+
+    
+
+    <div class="footer">
+        សូមអរគុណ និងសូមជួបគ្នានៅថ្ងៃមង្គល 🎉
+    </div>
+
+</div>
+
+</body>
+</html>
