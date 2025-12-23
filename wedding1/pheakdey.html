@@ -7,15 +7,16 @@
 
 <!-- Google Khmer Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@300;400;600&family=Noto+Serif+Khmer:wght@400;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Angkor&family=Moul&family=Moulpali&display=swap" rel="stylesheet">
 
 <style>
 body {
-	background-color: #CBFABC;
     margin: 0;
     padding: 0;
     font-family: 'Kantumruy Pro', sans-serif;
     background: linear-gradient(to bottom, #fff0f5, #ffffff);
-    
 }
 
 /* Main Card */
@@ -27,12 +28,15 @@ body {
     padding: 40px 25px;
     box-shadow: 0 10px 25px rgba(0,0,0,0.1);
     text-align: center;
-	background-color: #BCFAF5;
+    background-image: url('image/bg.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
 }
+
 
 /* Text Styles */
 .title {
-    font-family: 'Noto Serif Khmer', serif;
+    font-family: 'Moulpali', serif;
     font-size: 36px;
     color: #0B5299;
 }
@@ -45,7 +49,7 @@ body {
 .names {
     font-family: 'Noto Serif Khmer', serif;
     font-size: 32px;
-	color: #b76e79;
+    color: #b76e79;
     margin: 20px 0;
 }
 
@@ -69,6 +73,7 @@ body {
     border-radius: 15px;
     width: fit-content;
     font-size: 17px;
+    background: rgba(255,255,255,0.8);
 }
 
 /* Photos */
@@ -90,6 +95,22 @@ body {
     height: 100%;
     object-fit: cover;
 }
+.map-btn {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 12px 22px;
+    background: #0B5299;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 30px;
+    font-size: 16px;
+    transition: background 0.3s;
+}
+
+.map-btn:hover {
+    background: #083b6f;
+}
+
 
 /* Gallery */
 .gallery {
@@ -104,6 +125,38 @@ body {
     object-fit: cover;
     border-radius: 14px;
     border: 3px solid #fde2e7;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.gallery img:hover {
+    transform: scale(1.05);
+}
+
+/* Popup */
+.popup {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.popup img {
+    max-width: 90%;
+    max-height: 85%;
+    border-radius: 14px;
+}
+
+.popup span {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    font-size: 32px;
+    color: #fff;
+    cursor: pointer;
 }
 
 /* Footer */
@@ -119,6 +172,46 @@ body {
     .names { font-size: 26px; }
     .details { font-size: 16px; }
 }
+/* QR Bank Section */
+.qr-section {
+    margin-top: 35px;
+    padding: 25px 15px;
+    background: #fff7fa;
+    border-radius: 18px;
+}
+
+.qr-title {
+    font-family: 'Noto Serif Khmer', serif;
+    font-size: 22px;
+    color: #0B5299;
+    margin-bottom: 15px;
+}
+
+.qr-box {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.qr-item {
+    text-align: center;
+}
+
+.qr-item img {
+    width: 160px;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 14px;
+    border: 3px solid #fde2e7;
+    cursor: pointer;
+}
+
+.qr-item p {
+    margin-top: 8px;
+    font-size: 15px;
+}
+
 </style>
 </head>
 
@@ -126,7 +219,7 @@ body {
 
 <div class="invitation">
 
-    <div class="title">សំបុត្រអញ្ជើញមង្គលការ</div>
+    <div class="title">សិរីសួរស្ដីអាពាហ៍ពិពាហ៍</div>
 
     <div class="subtitle">
         សូមគោរពអញ្ជើញ<br>
@@ -134,45 +227,83 @@ body {
     </div>
 
     <div class="names">
-        <strong>ផន​ ភក្ដី</strong>
+ <strong>ផន ភក្ដី</strong>
         <span class="heart">❤</span>
-        <strong>ស្រី វឿន</strong>
+ <strong>ស្រី វឿន</strong>
     </div>
 
-    <!-- Profile Photo -->
     <div class="photo-section">
         <div class="couple-photo">
             <img src="image/couple.jpg" alt="Couple Photo">
         </div>
-	<div class="details">
-        មានកិត្តិយសសូមអញ្ជើញភ្ញៀវកិត្តិយស<br>
-        អញ្ជើញចូលរួមជាអធិបតី និងជាភ្ញៀវកិត្តិយស<br>
-        ក្នុងពិធីមង្គលអាពាហ៍ពិពាហ៍
-    </div>
-	<div class="date-box">
-        📅 អាទិត្យ ទី២២ ខែកុម្ភ: ឆ្នាំ២០២៦<br>
-        ⏰ វេលាម៉ោង ៤:០០ ល្ងាច<br>
-        📍 ភូមិដើមត្រសេក ឃុំជ័យជោគ ស្រុកកោះអណ្ដែត ខេត្តតាកែវ
-    </div>
-        <!-- Gallery Photos -->
+
+        <div class="details">
+            មានកិត្តិយសសូមអញ្ជើញភ្ញៀវកិត្តិយស<br>
+            អញ្ជើញចូលរួមជាអធិបតី និងជាភ្ញៀវកិត្តិយស<br>
+            ក្នុងពិធីមង្គលអាពាហ៍ពិពាហ៍
+        </div>
+
+        <div class="date-box">
+            📅 អាទិត្យ ទី២២ ខែកុម្ភៈ ឆ្នាំ២០២៦<br>
+            ⏰ វេលាម៉ោង ៤:០០ ល្ងាច<br>
+            📍 ភូមិដើមត្រសេក ឃុំជ័យជោគ ស្រុកកោះអណ្ដែត ខេត្តតាកែវ
+			<a class="map-btn"
+   href="https://maps.app.goo.gl/8Xay8u8NEhtDfoHC6"
+   target="_blank">
+   🗺️ នាំផ្លូវទៅកាន់ទីតាំង
+</a>
+
+        </div>
+		
+
+        <!-- Gallery -->
         <div class="gallery">
-            <img src="image/pic1.jpg" alt="Wedding Photo 1">
-            <img src="image/pic2.jpg" alt="Wedding Photo 2">
-            <img src="image/pic3.jpg" alt="Wedding Photo 3">
-            <img src="image/pic4.jpg" alt="Wedding Photo 4">
+            <img src="image/pic1.jpg" onclick="openPopup(this.src)">
+            <img src="image/pic2.jpg" onclick="openPopup(this.src)">
+            <img src="image/pic3.jpg" onclick="openPopup(this.src)">
+            <img src="image/pic4.jpg" onclick="openPopup(this.src)">
         </div>
     </div>
-
-    
-
-    
 
     <div class="footer">
         សូមអរគុណ និងសូមជួបគ្នានៅថ្ងៃមង្គល 🎉
     </div>
+	<!-- QR Bank Section -->
+<div class="qr-section">
+    <div class="qr-title">QR ធនាគារ សម្រាប់ចងដៃ</div>
+
+    <div class="qr-box">
+        <div class="qr-item">
+            <img src="image/aba-qr.jpg" onclick="openPopup(this.src)">
+            <p>ABA Bank<br>ឈ្មោះគណនី: ផន ភក្ដី</p>
+        </div>
+
+        <div class="qr-item">
+            <img src="image/acleda-qr.jpg" onclick="openPopup(this.src)">
+            <p>ACLEDA Bank<br>ឈ្មោះគណនី: ស្រី វឿន</p>
+        </div>
+    </div>
+</div>
+
 
 </div>
 
+<!-- Popup -->
+<div class="popup" id="popup" onclick="closePopup()">
+    <span onclick="closePopup()">×</span>
+    <img id="popupImg">
+</div>
+
+<script>
+function openPopup(src){
+    document.getElementById("popup").style.display = "flex";
+    document.getElementById("popupImg").src = src;
+}
+
+function closePopup(){
+    document.getElementById("popup").style.display = "none";
+}
+</script>
+
 </body>
 </html>
-
