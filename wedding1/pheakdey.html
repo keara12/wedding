@@ -1,18 +1,14 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="km">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>សំបុត្រអញ្ជើញមង្គលការ</title>
 
-<!-- Google Khmer Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@300;400;600&family=Noto+Serif+Khmer:wght@400;600&display=swap" rel="stylesheet">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Angkor&family=Moul&family=Moulpali&display=swap" rel="stylesheet">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Angkor&family=Chenla&family=Moul&family=Moulpali&family=Suwannaphum:wght@100;300;400;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Angkor&family=Chenla&family=Moulpali&family=Suwannaphum:wght@400;700&display=swap" rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
 <style>
 body {
@@ -20,9 +16,27 @@ body {
     padding: 0;
     font-family: 'Kantumruy Pro', sans-serif;
     background: linear-gradient(to bottom, #fff0f5, #ffffff);
+    overflow-x: hidden;
 }
 
-/* Main Card */
+/* ================= 🌸 FLOWER FALLING EFFECT ================= */
+.flower {
+    position: fixed;
+    top: -10%;
+    z-index: 9999;
+    user-select: none;
+    cursor: default;
+    pointer-events: none;
+    animation: fall linear forwards;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(110vh) rotate(360deg);
+    }
+}
+
+/* ================= MAIN CARD ================= */
 .invitation {
     max-width: 850px;
     margin: 40px auto;
@@ -31,76 +45,33 @@ body {
     padding: 40px 25px;
     box-shadow: 0 10px 25px rgba(0,0,0,0.1);
     text-align: center;
+    position: relative;
+    z-index: 10;
+    /* បើអ្នកមានរូបភាព bg.jpg សូមដាក់ក្នុង folder image */
     background-image: url('image/bg.jpg');
     background-repeat: no-repeat;
     background-size: cover;
 }
 
+/* ================= TEXT STYLES ================= */
+.title { font-family: 'Moulpali', serif; font-size: 36px; color: #0B5299; font-weight: 700; }
+.subtitle { font-family: 'Chenla', serif; font-size: 19px; margin: 20px 0; font-weight: 600; }
+.names { font-family: 'Suwannaphum', serif; font-size: 32px; color: #b76e79; margin: 20px 0; }
+.heart { color: #d6336c; font-size: 28px; margin: 0 10px; }
+.details { font-family: 'Chenla', serif; font-size: 18px; line-height: 1.9; margin-top: 25px; }
 
-/* Text Styles */
-.title {
-    font-family: 'Moulpali', serif;
-    font-size: 36px;
-    color: #0B5299;
-}
-
-.subtitle {
-	font-family: 'Chenla', serif;
-    font-size: 19px;
-    margin: 20px 0;
-}
-
-.names {
-    font-family: 'Suwannaphum', serif;
-    font-size: 32px;
-    color: #b76e79;
-    margin: 20px 0;
-}
-
-.heart {
-    color: #d6336c;
-    font-size: 28px;
-    margin: 0 10px;
-}
-
-.details {
-	font-family: 'Chenla', serif;
-    font-size: 18px;
-    line-height: 1.9;
-    margin-top: 25px;
-}
-
-/* Date Box */
+/* ================= DATE BOX ================= */
 .date-box {
-	font-family: 'Chenla', serif;
+    font-family: 'Chenla', serif;
     margin: 30px auto;
     padding: 20px 25px;
     border: 2px solid #f2c1cc;
     border-radius: 15px;
     width: fit-content;
     font-size: 17px;
-    background: rgba(255,255,255,0.8);
+    background: rgba(255,255,255,0.85);
 }
 
-/* Photos */
-.photo-section {
-    margin: 35px 0;
-}
-
-.couple-photo {
-    width: 220px;
-    height: 220px;
-    margin: 0 auto 25px;
-    border-radius: 50%;
-    overflow: hidden;
-    border: 6px solid #f2c1cc;
-}
-
-.couple-photo img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
 .map-btn {
     display: inline-block;
     margin-top: 15px;
@@ -110,121 +81,56 @@ body {
     text-decoration: none;
     border-radius: 30px;
     font-size: 16px;
-    transition: background 0.3s;
 }
 
-.map-btn:hover {
-    background: #083b6f;
+/* ================= PHOTO & GALLERY ================= */
+.couple-photo {
+    width: 220px;
+    height: 220px;
+    margin: 0 auto 25px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 6px solid #f2c1cc;
 }
+.couple-photo img { width: 100%; height: 100%; object-fit: cover; }
 
-
-/* Gallery */
 .gallery {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
     gap: 15px;
+    margin-top: 20px;
 }
-
 .gallery img {
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
-    border-radius: 14px;
-    border: 3px solid #fde2e7;
-    cursor: pointer;
-    transition: transform 0.3s;
+    width: 100%; height: 180px; object-fit: cover;
+    border-radius: 14px; border: 3px solid #fde2e7; cursor: pointer;
 }
 
-.gallery img:hover {
-    transform: scale(1.05);
-}
+/* ================= QR SECTION ================= */
+.qr-section { margin-top: 35px; padding: 25px 15px; background: #fff7fa; border-radius: 18px; }
+.qr-title { font-family: 'Noto Serif Khmer', serif; font-size: 22px; color: #0B5299; margin-bottom: 15px; }
+.qr-box { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+.qr-item img { width: 160px; height: 160px; border-radius: 14px; border: 3px solid #fde2e7; cursor: pointer; }
 
-/* Popup */
+/* ================= POPUP ================= */
 .popup {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.85);
-    justify-content: center;
-    align-items: center;
-    z-index: 999;
+    display: none; position: fixed; inset: 0;
+    background: rgba(0,0,0,0.85); justify-content: center; align-items: center; z-index: 3000;
 }
+.popup img { max-width: 90%; max-height: 85%; border-radius: 14px; }
+.popup span { position: absolute; top: 20px; right: 25px; font-size: 32px; color: #fff; cursor: pointer; }
 
-.popup img {
-    max-width: 90%;
-    max-height: 85%;
-    border-radius: 14px;
-}
+.footer { margin-top: 40px; font-size: 19px; color: #F4320B; }
 
-.popup span {
-    position: absolute;
-    top: 20px;
-    right: 25px;
-    font-size: 32px;
-    color: #fff;
-    cursor: pointer;
+@media (max-width:600px){
+    .title{font-size:30px;}
+    .names{font-size:26px;}
 }
-
-/* Footer */
-.footer {
-    margin-top: 40px;
-    font-size: 19px;
-    color: #F4320B;
-}
-
-/* Mobile */
-@media (max-width: 600px) {
-    .title { font-size: 30px; }
-    .names { font-size: 26px; }
-    .details { font-size: 16px; }
-}
-/* QR Bank Section */
-.qr-section {
-    margin-top: 35px;
-    padding: 25px 15px;
-    background: #fff7fa;
-    border-radius: 18px;
-}
-
-.qr-title {
-    font-family: 'Noto Serif Khmer', serif;
-    font-size: 22px;
-    color: #0B5299;
-    margin-bottom: 15px;
-}
-
-.qr-box {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-}
-
-.qr-item {
-    text-align: center;
-}
-
-.qr-item img {
-    width: 160px;
-    height: 160px;
-    object-fit: cover;
-    border-radius: 14px;
-    border: 3px solid #fde2e7;
-    cursor: pointer;
-}
-
-.qr-item p {
-    margin-top: 8px;
-    font-size: 15px;
-}
-
 </style>
 </head>
 
 <body>
 
 <div class="invitation">
-
     <div class="title">សិរីសួរស្ដីអាពាហ៍ពិពាហ៍</div>
 
     <div class="subtitle">
@@ -233,39 +139,30 @@ body {
     </div>
 
     <div class="names">
- <strong>ភន ភក្ដី</strong>
+        <strong>ភន ភក្ដី</strong>
         <span class="heart">❤</span>
- <strong>នួន ស្រីវឿន</strong>
+        <strong>នួន ស្រីវឿន</strong>
     </div>
 
     <div class="photo-section">
         <div class="couple-photo">
-            <img src="image/couple.jpg" alt="Couple Photo">
+            <img src="image/couple.jpg" alt="Couple">
         </div>
 
         <div class="details">
-            មានកិត្តិយសសូមអញ្ជើញភ្ញៀវកិត្តិយស<br>
-            អញ្ជើញចូលរួមជាអធិបតី និងជាភ្ញៀវកិត្តិយស<br>
-            ក្នុងពិធីមង្គលអាពាហ៍ពិពាហ៍
+            យើងខ្ញុំមានកិត្តិយសសូមអញ្ជើញភ្ញៀវកិត្តិយស<br>
+            ចូលរួមក្នុងពិធីមង្គលអាពាហ៍ពិពាហ៍
         </div>
 
         <div class="date-box">
             📅 អាទិត្យ ទី២២ ខែកុម្ភៈ ឆ្នាំ២០២៦<br>
-            ⏰ វេលាម៉ោង ៤:០០ ល្ងាច<br>
+            ⏰ ម៉ោង ៤:០០ ល្ងាច<br>
             📍 ភូមិតារ៉ាគមន៍ ឃុំជ័យជោគ ស្រុកបុរីជលសារ ខេត្តតាកែវ<br>
-			<a class="map-btn"
-   href="https://maps.app.goo.gl/8Xay8u8NEhtDfoHC6"
-   target="_blank">
-   🗺️👉ចុចទីនេះដើម្បីស្វែងរកទីតាំងផ្ទះការ
-</a>
-
+            <a class="map-btn" href="#" target="_blank">🗺️ សូមចុចមើលផែនទី</a>
         </div>
 		<div class="details">
-            សូមចុចមើលកម្រងរូបភាពអនុស្សាវរីយ៍ 👇😊
+            💖កម្រងរូបភាពអនុស្សាវរីយ៍💖
         </div>
-		
-
-        <!-- Gallery -->
         <div class="gallery">
             <img src="image/pic1.jpg" onclick="openPopup(this.src)">
             <img src="image/pic2.jpg" onclick="openPopup(this.src)">
@@ -274,48 +171,95 @@ body {
         </div>
     </div>
 
+    <div class="qr-section">
+        <div class="qr-title">QR ធនាគារ សម្រាប់ចងដៃ</div>
+        <div class="qr-box">
+            <div class="qr-item">
+                <img src="image/aba-qr.jpg" onclick="openPopup(this.src)">
+                <p>ABA Bank</p>
+            </div>
+            <div class="qr-item">
+                <img src="image/acleda-qr.jpg" onclick="openPopup(this.src)">
+                <p>ACLEDA Bank</p>
+            </div>
+        </div>
+    </div>
+
     <div class="footer">
         សូមអរគុណ និងសូមជួបគ្នានៅថ្ងៃមង្គល 🎉
     </div>
-	<!-- QR Bank Section -->
-<div class="qr-section">
-    <div class="qr-title">QR ធនាគារ សម្រាប់ចងដៃ</div>
-
-    <div class="qr-box">
-        <div class="qr-item">
-            <img src="image/aba-qr.jpg" onclick="openPopup(this.src)">
-            <p>ABA Bank<br>ឈ្មោះគណនី: ផន ភក្ដី</p>
-        </div>
-
-        <div class="qr-item">
-            <img src="image/acleda-qr.jpg" onclick="openPopup(this.src)">
-            <p>ACLEDA Bank<br>ឈ្មោះគណនី: ស្រី វឿន</p>
-        </div>
-    </div>
 </div>
 
-
-</div>
-
-<!-- Popup -->
 <div class="popup" id="popup" onclick="closePopup()">
     <span onclick="closePopup()">×</span>
     <img id="popupImg">
 </div>
 
 <script>
+// --- បើក/បិទរូបភាពធំ ---
 function openPopup(src){
-    document.getElementById("popup").style.display = "flex";
-    document.getElementById("popupImg").src = src;
+    document.getElementById("popup").style.display="flex";
+    document.getElementById("popupImg").src=src;
+}
+function closePopup(){
+    document.getElementById("popup").style.display="none";
 }
 
-function closePopup(){
-    document.getElementById("popup").style.display = "none";
+// --- ១. មុខងារបាញ់កាំជ្រួច (Fireworks) ---
+function fireAtPosition(x, y) {
+    confetti({
+        particleCount: 80,
+        startVelocity: 35,
+        spread: 360,
+        ticks: 80,
+        gravity: 0.9,
+        zIndex: 999,
+        origin: {
+            x: x / window.innerWidth,
+            y: y / window.innerHeight
+        }
+    });
 }
+
+document.addEventListener('click', function (e) {
+    fireAtPosition(e.clientX, e.clientY);
+});
+
+document.addEventListener('touchstart', function (e) {
+    var touch = e.touches[0];
+    fireAtPosition(touch.clientX, touch.clientY);
+});
+
+// --- ២. មុខងារផ្កាធ្លាក់ (Flower Falling) ---
+function createFlowers() {
+    const flowerEmojis = ['🌸', '🌺', '🌹', '🌷', '✨'];
+    for (let i = 0; i < 30; i++) {
+        setTimeout(() => {
+            const flower = document.createElement('div');
+            flower.className = 'flower';
+            flower.innerText = flowerEmojis[Math.floor(Math.random() * flowerEmojis.length)];
+            flower.style.left = Math.random() * 100 + 'vw';
+            flower.style.fontSize = (Math.random() * 20 + 10) + 'px';
+            flower.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            flower.style.opacity = Math.random();
+            document.body.appendChild(flower);
+
+            setTimeout(() => flower.remove(), 5000);
+        }, i * 200);
+    }
+
+    // 🔁 ហៅខ្លួនឯងវិញ
+    setTimeout(createFlowers, 6000);
+}
+
+createFlowers();
+
+// ដំណើរការពេលបើក Page ភ្លាម
+window.onload = function() {
+    launchFireworks();
+    createFlowers();
+};
 </script>
 
 </body>
 </html>
-
-
-
