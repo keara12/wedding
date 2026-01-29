@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>សូមគោរពអញ្ជើញចូលរួមមង្គលការ</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Hanuman:wght@300;400;700&family=Moul&display=swap" rel="stylesheet">
+
+<style>
+/* ===== Falling Flowers CSS ===== */
+.flower-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+    overflow: hidden;
+}
+.flower {
+    position: absolute;
+    color: #ffb7c5;
+    user-select: none;
+    cursor: default;
+    animation: fall linear infinite;
+}
+@keyframes fall {
+    0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+}
+
+/* ===== Real Gold Text Styling ===== */
+h1, h2, h3, h4, .moul-title {
+    font-family: 'Moul', serif;
+    background: linear-gradient(to bottom, #BF953F 0%, #FCF6BA 20%, #B38728 40%, #FBF5B7 60%, #AA771C 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.5));
+    margin: 10px 0;
+    text-align: center;
+}
+
+h1 { font-size: 2.2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.5rem; }
+h4 { font-size: 1.2rem; }
+
+p {
+    color: white;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+    font-family: 'Hanuman', serif;
+    line-height: 1.8;
+}
+
+/* ===== Global ===== */
+html, body {
+    margin: 0;
+    height: 100%;
+    scroll-snap-type: y mandatory;
+    overflow-y: scroll;
+    font-family: 'Hanuman', serif;
+    background: #000;
+}
+
+section {
+    height: 100vh;
+    scroll-snap-align: start;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 20px;
+    box-sizing: border-box;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    animation: fadeUp .9s ease both;
+}
+
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== Backgrounds per Section ===== */
+#home { background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('image/2.jpg'); }
+#schedule { background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('image/3.jpg'); }
+#location { background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('image/4.jpg'); }
+#gallery { background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('image/5.jpg'); }
+#gift { background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('image/6.jpg'); }
+
+.curved-text-container { width: 100%; max-width: 500px; margin-top: -20px; }
+.khmer-curved { font-weight: bold; font-family: 'Moul', cursive; font-size: 42px; }
+
+.heart-container { margin: 10px 0; }
+.red-heart {
+    filter: drop-shadow(0px 0px 10px rgba(255, 0, 0, 0.8));
+    animation: heartbeat 1.2s ease-in-out infinite;
+    transform-origin: center;
+}
+@keyframes heartbeat {
+    0% { transform: scale(1); }
+    15% { transform: scale(1.3); }
+    30% { transform: scale(1); }
+}
+
+.card {
+    width: 90%;
+    max-width: 360px;
+    padding: 22px;
+    border-radius: 22px;
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.2);
+    box-shadow: 0 12px 35px rgba(0,0,0,0.4);
+    text-align: center;
+}
+
+.gallery-container {
+    width: 90%;
+    max-height: 70vh;
+    overflow-y: auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    padding: 12px;
+    border-radius: 22px;
+    background: rgba(255,255,255,0.1);
+}
+.gallery-container img {
+    width: 100%; height: 170px; object-fit: cover; border-radius: 16px; transition: .4s;
+}
+
+/* ===== Nav & UI ===== */
+.bottom-nav {
+    position: fixed; bottom: 15px; left: 50%; transform: translateX(-50%);
+    width: 90%; background: rgba(255,255,255,0.9);
+    border-radius: 50px; display: flex; padding: 10px 0; z-index: 1000;
+}
+.nav-item { flex: 1; text-align: center; color: #555; text-decoration: none; font-size: 0.65rem; }
+.nav-item i { display: block; font-size: 1.2rem; }
+.nav-item.active { color: #B38728; font-weight: bold; }
+
+#musicBtn {
+    position: fixed; top: 20px; right: 20px;
+    width: 45px; height: 45px; background: linear-gradient(135deg, #D4AF37, #FFD700);
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    z-index: 1500; animation: spin 4s linear infinite; cursor: pointer;
+    animation-play-state: paused;
+}
+@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+/* Lightbox with Scroll/Swipe support */
+.lightbox {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    display: none;
+    z-index: 9999;
+    flex-direction: column;
+}
+.lightbox-wrapper {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+}
+.lightbox-wrapper::-webkit-scrollbar { display: none; }
+
+.lightbox-slide {
+    min-width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    scroll-snap-align: center;
+}
+.lightbox-slide img {
+    max-width: 90%;
+    max-height: 80%;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+}
+.lightbox .close-btn {
+    position: absolute;
+    top: 30px; right: 30px;
+    color: white; font-size: 35px; cursor: pointer; z-index: 10000;
+}
+.curved-text-container {
+    text-align: center;
+    position: relative;
+    margin-top: -20px;
+}
+
+.kbach-icon {
+    width: 80px;
+    display: block;
+    margin: -30px auto 10px auto;
+    filter: drop-shadow(0px 0px 5px rgba(191, 149, 63, 0.8)) 
+            sepia(100%) 
+            saturate(500%) 
+            hue-rotate(5deg) 
+            brightness(1.1);
+}
+</style>
+</head>
+
+<body>
+
+<div class="flower-container" id="flower-container"></div>
+
+<audio id="bgMusic" loop preload="auto">
+    <source src="son1.mp3" type="audio/mpeg">
+</audio>
+<div id="musicBtn"><i class="fas fa-music"></i></div>
+
+<div class="bottom-nav">
+    <a href="#home" class="nav-item active" data-section="home"><i class="fas fa-home"></i>ទំព័រដើម</a>
+    <a href="#schedule" class="nav-item" data-section="schedule"><i class="fas fa-calendar-alt"></i>កម្មវិធី</a>
+    <a href="#location" class="nav-item" data-section="location"><i class="fas fa-map-marker-alt"></i>ទីតាំង</a>
+    <a href="#gallery" class="nav-item" data-section="gallery"><i class="fas fa-images"></i>រូបភាព</a>
+    <a href="#gift" class="nav-item" data-section="gift"><i class="fas fa-heart"></i>ចំណងដៃ</a>
+</div>
+
+<section id="home">
+   <div class="curved-text-container">
+    <svg viewBox="0 0 500 180">
+        <defs>
+            <linearGradient id="goldGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" style="stop-color:#BF953F" />
+                <stop offset="25%" style="stop-color:#FCF6BA" />
+                <stop offset="50%" style="stop-color:#B38728" />
+                <stop offset="100%" style="stop-color:#AA771C" />
+            </linearGradient>
+        </defs>
+        <path id="curve" d="M50,140 Q250,30 450,140" fill="transparent" />
+        <text>
+            <textPath xlink:href="#curve" startOffset="50%" text-anchor="middle" class="khmer-curved" fill="url(#goldGrad)">
+                សិរីសួស្តីអាពាហ៍ពិពាហ៍
+            </textPath>
+        </text>
+    </svg>
+    <img src="image/b.png" class="kbach-icon"> 
+</div>
+    <h1>ណែម គារ៉ា</h1>
+    <div class="heart-container">
+        <svg class="red-heart" viewBox="0 0 32 32" width="60" height="60">
+            <path d="M16 28.5L14.1 26.7C7.3 20.6 2.8 16.5 2.8 11.5 2.8 7.4 6 4.2 10.1 4.2c2.3 0 4.5 1.1 5.9 2.8 1.4-1.7 3.6-2.8 5.9-2.8 4.1 0 7.3 3.2 7.3 7.3 0 5-4.5 9.1-11.3 15.2L16 28.5z" fill="#FF0000"/>
+        </svg>
+    </div>
+    <h1>ឈូក ចន្នី</h1>
+    <p style="font-size:1.1rem;">សូមគោរពអញ្ជើញចូលរួមមង្គលការ</p>
+</section>
+
+<section id="schedule">
+    <h2 style="font-size:1.6rem; padding: 0 10px;">យើងខ្ញុំមានកិត្តិយសសូមគោរពអញ្ជើញ</h2>
+    <div class="card">
+        <p style="color: #eee;">ឯកឧត្តម លោកឧកញ៉ា អ្នកឧកញ៉ា ឧកញ៉ា លោកជំទាវ លោក លោកស្រី អ្នកនាង កញ្ញា អញ្ជើញចូលរួមជាអធិបតី និងជាភ្ញៀវកិត្តិយស ដើម្បីប្រសិទ្ធិពរជ័យសិរីសួស្តី ជ័យមង្គល ក្នុងពិធីអាពាហ៍ពិពាហ៍ របស់គូស្វាមីភរិយាថ្មី។</p>
+        <hr style="border: 0.5px solid gold; margin: 15px 0;">
+        <h3>⚜️ពិសាភោជនាហារ⚜️</h3>
+        <h4>ថ្ងៃសៅរ៍ ទី២៥ តុលា ២០២៦</h4>
+        <p>ទទួលភ្ញៀវ៖ ៥:០០ ល្ងាច</p>
+    </div>
+</section>
+
+<section id="location">
+    <h2>ទីតាំង</h2>
+    <div class="card">
+        <p><i class="fas fa-map-marker-alt" style="color:gold;"></i> ភូមិដំណាក់រាជា ឃុំប្រាំបីមុំ ស្រុកទ្រាំង ខេត្តតាកែវ</p>
+        <p><i class="fa fa-phone" aria-hidden="true" style="color:gold;"></i>: 015342443/0963042243</p>
+        <a href="https://www.google.com/maps" target="_blank" 
+           style="display:inline-block; margin-top:12px; padding:10px 22px; background:linear-gradient(135deg, #BF953F, #AA771C); color:white; border-radius:20px; text-decoration:none; font-weight:bold;">
+           មើលផែនទី
+        </a>
+    </div>
+</section>
+
+<section id="gallery">
+    <h2>កម្រងរូបភាព</h2>
+    <div class="gallery-container" id="gallery-grid">
+        <img src="image/3.jpg" class="gallery-img" data-index="0"> 
+        <img src="image/4.jpg" class="gallery-img" data-index="1">
+        <img src="image/5.jpg" class="gallery-img" data-index="2"> 
+        <img src="image/6.jpg" class="gallery-img" data-index="3">
+        <img src="image/7.jpg" class="gallery-img" data-index="4"> 
+        <img src="image/8.jpg" class="gallery-img" data-index="5">
+    </div>
+</section>
+
+<div class="lightbox" id="lightbox">
+    <span class="close-btn">×</span>
+    <div class="lightbox-wrapper" id="lightbox-wrapper"></div>
+</div>
+
+<section id="gift">
+    <h2><span style="font-size: 1.2rem;">៚</span> ចំណងដៃ <span style="font-size: 1.2rem;">៚</span></h2>
+    <div class="card">
+        <p style="margin-bottom: 5px;"><strong style="color: #FCF6BA; font-size: 1.2rem;">ACLEDA Bank</strong></p>
+        <div style="background: white; padding: 10px; width: 180px; height: 180px; margin: 15px auto; border-radius: 18px; box-shadow: 0 0 15px rgba(255, 215, 0, 0.3); display: flex; align-items: center; justify-content: center; overflow: hidden;">
+            <img src="image/qrcode.JPG" style="width: 100%; height: 100%; object-fit: contain; border-radius: 10px;">
+        </div>
+        <h3 style="margin: 10px 0; letter-spacing: 1px; color: #FCF6BA;">015342443</h3>
+        <p style="font-size: 1.1rem; margin-bottom: 20px;">ណែម គារ៉ា</p>
+        <a href="https://acledabank.com.kh/acleda?payment_data=qWY5B2SAUfIhLblxzOtfu5ckLzMHjaSki6Ru0bsOyNK+ylPBgZ0sHH6BeGUscKoEX0L6dnjjyuN7JthCr0XpqyJDca94WshCk8Atw3tAAid5rrjY46bIUnTRgvYEL3gPhFbyfPfla3XBaeFFR6UbAgXU+yubD3lyc41S6t6zxnJdWqsxcsn/lRknKoZnBAdgQ22lWUy0Z5TcgPv7leensfyWz5YsSru86uAcoV2YpNmYaZL/FKIthkAdRbxgBSxm&key=khqr" 
+           style="display: inline-flex; align-items: center; justify-content: center; gap: 10px; background: linear-gradient(135deg, #BF953F, #AA771C); color: white; padding: 12px 25px; border-radius: 50px; text-decoration: none; font-weight: bold; width: 80%; box-shadow: 0 4px 15px rgba(0,0,0,0.3); transition: 0.3s;">
+           <i class="fas fa-paper-plane"></i> ចុចដើម្បីផ្ទេរប្រាក់
+        </a>
+        <p>សូមអគុណសម្រាប់វត្តមានក្នុងកម្មវិធី</p>
+    </div>
+</section>
+
+<script>
+/* FIX: Force scroll to top on refresh */
+if (history.scrollRestoration) {
+    history.scrollRestoration = 'manual';
+}
+window.scrollTo(0, 0);
+
+window.addEventListener('load', () => {
+    if (window.location.hash) {
+        history.replaceState("", document.title, window.location.pathname);
+    }
+    document.getElementById('home').scrollIntoView();
+});
+
+/* --- Gallery Slider Logic --- */
+const lightbox = document.getElementById('lightbox');
+const lightboxWrapper = document.getElementById('lightbox-wrapper');
+const closeBtn = document.querySelector('.close-btn');
+const galleryImgs = document.querySelectorAll('.gallery-img');
+
+galleryImgs.forEach((img, index) => {
+    const slide = document.createElement('div');
+    slide.className = 'lightbox-slide';
+    slide.innerHTML = `<img src="${img.src}">`;
+    lightboxWrapper.appendChild(slide);
+    
+    img.onclick = () => {
+        lightbox.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+        const slideWidth = lightboxWrapper.offsetWidth;
+        lightboxWrapper.scrollLeft = index * slideWidth;
+    };
+});
+
+closeBtn.onclick = () => {
+    lightbox.style.display = 'none';
+    document.body.style.overflow = 'auto';
+};
+
+lightbox.onclick = (e) => {
+    if(e.target === lightbox || e.target === lightboxWrapper) {
+        lightbox.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+};
+
+/* --- Falling Flowers Script --- */
+function createFlower() {
+    const container = document.getElementById('flower-container');
+    const flower = document.createElement('div');
+    const flowers_list = ['🌸', '🌺', '🌹', '🌷'];
+    flower.className = 'flower';
+    flower.innerText = flowers_list[Math.floor(Math.random() * flowers_list.length)];
+    flower.style.left = Math.random() * 100 + 'vw';
+    flower.style.fontSize = Math.random() * 15 + 10 + 'px';
+    flower.style.animationDuration = Math.random() * 3 + 4 + 's';
+    flower.style.opacity = Math.random();
+    container.appendChild(flower);
+    setTimeout(() => { flower.remove(); }, 7000);
+}
+setInterval(createFlower, 300);
+
+/* Music Logic */
+const music = document.getElementById("bgMusic");
+const btn = document.getElementById("musicBtn");
+let isPlaying = false;
+
+function toggleMusic() {
+    if (isPlaying) {
+        music.pause();
+        btn.style.animationPlayState = 'paused';
+    } else {
+        music.play();
+        btn.style.animationPlayState = 'running';
+    }
+    isPlaying = !isPlaying;
+}
+
+btn.onclick = toggleMusic;
+const startMusic = () => {
+    if (!isPlaying) { toggleMusic(); }
+    document.removeEventListener('click', startMusic);
+    document.removeEventListener('touchstart', startMusic);
+};
+document.addEventListener('click', startMusic);
+document.addEventListener('touchstart', startMusic);
+
+/* Scroll Observer */
+const sections = document.querySelectorAll("section");
+const navItems = document.querySelectorAll(".nav-item");
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            navItems.forEach(i => i.classList.remove("active"));
+            const target = document.querySelector(`.nav-item[data-section="${entry.target.id}"]`);
+            if (target) target.classList.add("active");
+        }
+    });
+}, { threshold: 0.6 });
+sections.forEach(s => observer.observe(s));
+</script>
+
+</body>
+</html>
