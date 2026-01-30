@@ -103,10 +103,10 @@ section {
 
 .curved-text-container { width: 100%; max-width: 500px; margin-top: -20px; }
 .khmer-curved {
-    font-family: 'Moul', serif;
-    font-size: 32px; /* Adjust size as needed for the curve */
-    letter-spacing: 1px;
-}
+    /* Moul is the best 'Wedding' font. It is thick and handles curves well */
+    font-family: 'Moul', serif; 
+    font-size: 26px; /* Slightly smaller to prevent mobile overlap */
+  }
 
 .heart-container { margin: 10px 0; }
 .red-heart {
@@ -242,9 +242,8 @@ section {
 </div>
 
 <section id="home">
-   <div class="curved-text-container">
-    <svg viewBox="0 0 500 180">
-        <defs>
+  <div class="curved-text-container">
+    <svg viewBox="0 0 500 200" style="overflow: visible;"> <defs>
             <linearGradient id="goldGrad" x1="0%" y1="0%" x2="0%" y2="100%">
                 <stop offset="0%" style="stop-color:#BF953F" />
                 <stop offset="25%" style="stop-color:#FCF6BA" />
@@ -252,10 +251,17 @@ section {
                 <stop offset="100%" style="stop-color:#AA771C" />
             </linearGradient>
         </defs>
-        <path id="curve" d="M50,140 Q250,30 450,140" fill="transparent" />
+        <path id="curve" d="M50,150 Q250,50 450,150" fill="none" />
+        
         <text>
-            <textPath xlink:href="#curve" startOffset="50%" text-anchor="middle" class="khmer-curved" fill="url(#goldGrad)">
-                សិរីសួស្តីអាពាហ៍ពិពាហ៍
+            <textPath 
+                href="#curve" 
+                xlink:href="#curve" 
+                startOffset="50%" 
+                text-anchor="middle" 
+                class="khmer-curved" 
+                fill="url(#goldGrad)"
+                dominant-baseline="middle"> សិរីសួស្តីអាពាហ៍ពិពាហ៍
             </textPath>
         </text>
     </svg>
@@ -432,3 +438,4 @@ sections.forEach(s => observer.observe(s));
 
 </body>
 </html>
+
